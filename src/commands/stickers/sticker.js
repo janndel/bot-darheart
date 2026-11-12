@@ -83,6 +83,9 @@ module.exports = {
                 {},
                 { logger: sock.logger, reuploadRequest: sock.updateMediaMessage }
             );
+            if (buffer.length > 15 * 1024 * 1024) {
+                return await sock.sendMessage(chatId, { text: `⚠️ El archivo supera el límite de 15 MB para ahorrar datos del servidor.` });
+            }
 
             if (tipo === 'sticker') {
                 fs.writeFileSync(outputPath, buffer);

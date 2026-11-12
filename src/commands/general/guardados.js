@@ -24,10 +24,10 @@ function enviarArchivo(sock, chatId, archivo) {
     const stream = fs.createReadStream(archivo.ruta);
     const nombre = archivo.nombre;
     const caption = `📁 *${nombre}*\n📹 ${formatearBytes(archivo.size)}\n\n_DARHEART Bot_`;
-    if (archivo.size <= 64 * 1024 * 1024) {
+    if (archivo.size <= 15 * 1024 * 1024) {
         return sock.sendMessage(chatId, { video: stream, mimetype: 'video/mp4', caption });
     }
-    return sock.sendMessage(chatId, { document: stream, mimetype: 'application/octet-stream', fileName: nombre, caption });
+    return sock.sendMessage(chatId, { text: `⚠️ El archivo supera el límite de 15 MB para ahorrar datos del servidor.` });
 }
 
 module.exports = {

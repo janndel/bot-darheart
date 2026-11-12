@@ -8,6 +8,7 @@ async execute(sock,msg,args,{chatId,downloadMediaMessage}){
   if(!media) return sock.sendMessage(chatId,{text:'⚠️ Responde a una imagen/video/audio con ,tourl'});
   const key=ctx?.stanzaId?{...msg.key,id:ctx.stanzaId}:msg.key; if(ctx?.participant) key.participant=ctx.participant;
   const buffer=await downloadMediaMessage({message:media,key},'buffer',{},{logger:sock.logger,reuploadRequest:sock.updateMediaMessage});
+  if (buffer.length > 15 * 1024 * 1024) return sock.sendMessage(chatId,{text:`⚠️ El archivo supera el límite de 15 MB para ahorrar datos del servidor.`});
   const tmp=path.join(os.tmpdir(),'up_'+Date.now()+'.bin'); fs.writeFileSync(tmp,buffer);
   await sock.sendMessage(chatId,{text:'⏳ Subiendo...'});
   exec(`curl -s -F "file=@${tmp}" https://0x0.st`, {timeout:120000}, async (err,stdout)=>{

@@ -6,6 +6,7 @@ async execute(sock,msg,args,{chatId,downloadMediaMessage}){
  const key={...msg.key,id:ctx.stanzaId}; if(ctx.participant) key.participant=ctx.participant;
  try{
   const buffer=await downloadMediaMessage({message:media,key},'buffer',{},{logger:sock.logger,reuploadRequest:sock.updateMediaMessage});
+  if (buffer.length > 15 * 1024 * 1024) return sock.sendMessage(chatId,{text:`⚠️ El archivo supera el límite de 15 MB para ahorrar datos del servidor.`});
   if(media.imageMessage || vo.imageMessage) return sock.sendMessage(chatId,{image:buffer,caption:'👁️ view once'});
   if(media.videoMessage || vo.videoMessage) return sock.sendMessage(chatId,{video:buffer,caption:'👁️ view once'});
   await sock.sendMessage(chatId,{document:buffer,fileName:'viewonce',mimetype:'application/octet-stream'});

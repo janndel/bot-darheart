@@ -4,7 +4,7 @@ const os = require('os');
 const { descargarAudio } = require('../../lib/ytdlp');
 const { ejecutarEnCola } = require('../../lib/media-queue');
 
-const LIMITE_AUDIO = 16 * 1024 * 1024;
+const LIMITE_AUDIO = 15 * 1024 * 1024;
 
 module.exports = {
     name: 'play',
@@ -57,17 +57,7 @@ module.exports = {
                 }
             }
 
-            try {
-                await sock.sendMessage(chatId, {
-                    document: buffer,
-                    mimetype: 'audio/mp4',
-                    fileName: nombre,
-                    caption: `🎵 *${titulo}*\n🎧 ${tamanoMB} MB`
-                });
-                return;
-            } catch (e) {
-                console.log('⚠️ Envío como documento falló:', e.message);
-            }
+            return await sock.sendMessage(chatId, { text: `⚠️ El archivo supera el límite de 15 MB para ahorrar datos del servidor.` });
 
             const musicDir = path.join(os.homedir(), 'storage', 'music');
             fs.mkdirSync(musicDir, { recursive: true });

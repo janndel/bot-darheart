@@ -169,7 +169,6 @@ async function descargarVideoArchivo(entrada, timeoutMs = 240000, opts = {}) {
     try {
         const libre = espacio().libre;
         verificarEspacio(350 * 1024 * 1024, 0);
-        const maxMB = Math.max(50, Math.floor(((libre || 500 * 1024 * 1024) - 350 * 1024 * 1024) / 1024 / 1024));
         const objetivo = esUrlYouTube(entrada) ? entrada : `ytsearch1:${entrada}`;
         const salida = await ejecutarDescarga([
             '--merge-output-format', 'mp4',
