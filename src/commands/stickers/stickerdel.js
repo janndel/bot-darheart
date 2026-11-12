@@ -1,0 +1,3 @@
+const s=require('../../lib/stickerpacks-store');
+module.exports={name:'stickerdel',alias:['delsticker'],category:'stickers',desc:'Eliminar sticker de paquete',
+async execute(sock,msg,args,{chatId}){const name=args.join(' ').trim(); const d=s.load(); if(!name||!d[name]) return sock.sendMessage(chatId,{text:'⚠️ Pack no encontrado.'}); d[name].stickers=(d[name].stickers||[]).slice(0,-1); s.save(d); await sock.sendMessage(chatId,{text:'✅ Último sticker eliminado de '+name});}};

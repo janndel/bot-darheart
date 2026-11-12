@@ -1,0 +1,3 @@
+const s=require('../../lib/stickerpacks-store');
+module.exports={name:'addsticker',alias:['stickeradd'],category:'stickers',desc:'Agregar sticker a paquete',
+async execute(sock,msg,args,{chatId}){const name=args.join(' ').trim(); if(!name) return sock.sendMessage(chatId,{text:'⚠️ Uso: ,addsticker <pack> (respondiendo a sticker)'}); const ctx=msg.message?.extendedTextMessage?.contextInfo; if(!ctx?.quotedMessage?.stickerMessage) return sock.sendMessage(chatId,{text:'⚠️ Responde a un sticker.'}); const d=s.load(); if(!d[name]) d[name]={stickers:[],desc:'',private:false}; d[name].stickers.push({id:ctx.stanzaId,at:Date.now()}); s.save(d); await sock.sendMessage(chatId,{text:'✅ Sticker agregado a '+name});}};

@@ -1,0 +1,3 @@
+const fs=require('fs'),path=require('path');const {writeJsonAtomic}=require('../../lib/json-store');const F=path.join(process.env.HOME,'config.json');
+module.exports={name:'setstatus',alias:[],category:'sockets',desc:'Cambiar estado del bot',
+async execute(sock,msg,args,{chatId}){const v=args.join(' ').trim(); if(!v) return sock.sendMessage(chatId,{text:'⚠️ Uso: ,setstatus <valor>'}); let c={}; try{c=JSON.parse(fs.readFileSync(F,'utf8'))}catch{} c['status']=v; writeJsonAtomic(F,c); await sock.sendMessage(chatId,{text:'✅ Cambiar estado del bot actualizado.'});}};

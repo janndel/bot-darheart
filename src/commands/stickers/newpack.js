@@ -1,0 +1,3 @@
+const s=require('../../lib/stickerpacks-store');
+module.exports={name:'newpack',alias:['newstickerpack'],category:'stickers',desc:'Crear paquete de stickers',
+async execute(sock,msg,args,{chatId}){const name=args.join(' ').trim(); if(!name) return sock.sendMessage(chatId,{text:'⚠️ Uso: ,newpack <nombre>'}); const d=s.load(); if(!d[name]) d[name]={stickers:[],desc:'',private:false}; s.save(d); await sock.sendMessage(chatId,{text:'✅ Pack creado: '+name});}};

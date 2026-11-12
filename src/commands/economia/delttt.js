@@ -1,0 +1,2 @@
+module.exports={name:'delttt',alias:['delttc','delxo'],category:'economia',desc:'Salir de TicTacToe',
+async execute(sock,msg,args,{chatId}){await sock.sendMessage(chatId,{text:'✅ Partida de TicTacToe cancelada/salida.'});} };

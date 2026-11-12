@@ -1,0 +1,3 @@
+const fs=require('fs'),path=require('path');const {writeJsonAtomic}=require('../../lib/json-store');const F=path.join(process.env.HOME,'config.json');
+module.exports={name:'self',alias:[],category:'sockets',desc:'Modo self on/off',
+async execute(sock,msg,args,{chatId}){const op=(args[0]||'').toLowerCase(); let c={}; try{c=JSON.parse(fs.readFileSync(F,'utf8'))}catch{} if(!['on','off'].includes(op)) return sock.sendMessage(chatId,{text:'⚠️ Uso: ,self on|off'}); c.self=op==='on'; writeJsonAtomic(F,c); await sock.sendMessage(chatId,{text:'✅ self: '+op});}};

@@ -1,0 +1,16 @@
+{
+  "activos": {
+    "120363413531575419@g.us": {
+      "fecha": "2026-10-08T19:43:19.038Z",
+      "clave": "DARHEART-VIP-001"
+    },
+    "120363429951440848@g.us": {
+      "fecha": "2026-10-08T19:44:24.712Z",
+      "clave": "DARHEART-VIP-002"
+    }
+  },
+  "clavesUsadas": [
+    "DARHEART-VIP-001",
+    "DARHEART-VIP-002"
+  ]
+}

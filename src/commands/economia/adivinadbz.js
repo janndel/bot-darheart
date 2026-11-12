@@ -1,0 +1,2 @@
+module.exports={name:'adivinadbz',alias:['dbzguess'],category:'economia',desc:'Adivina personaje de DBZ',
+async execute(sock,msg,args,{chatId}){const list=['Goku','Vegeta','Gohan','Piccolo','Freezer']; const x=list[Math.floor(Math.random()*list.length)]; await sock.sendMessage(chatId,{text:'🐉 *ADIVINA DBZ*\n\nPista: personaje icónico.\nRespuesta: _'+x+'_'});} };

@@ -1,0 +1,2 @@
+module.exports={name:'qc',alias:[],category:'stickers',desc:'Sticker quote',
+async execute(sock,msg,args,{chatId}){const text=args.join(' ').trim()||'Hola'; const url='https://api.popcat.xyz/quote?text='+encodeURIComponent(text)+'&font=Poppins&fontSize=35'; try{const r=await fetch(url); const b=Buffer.from(await r.arrayBuffer()); await sock.sendMessage(chatId,{sticker:b});}catch(e){await sock.sendMessage(chatId,{text:'❌ No se pudo crear qc: '+e.message});}}};

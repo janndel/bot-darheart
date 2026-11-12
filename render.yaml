@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: darheart-bot
+    runtime: node
+    plan: free
+    region: frankfurt
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /ping
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: PORT
+        value: 10000
+      - key: NUMERO_TELEFONO
+        sync: false
+      - key: OWNER_NUMBERS
+        sync: false
+      - key: WEB_TOKEN
+        sync: false
+      - key: PANEL_TOKEN
+        sync: false
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false

@@ -1,0 +1,2 @@
+module.exports={name:'join',alias:['unir'],category:'sockets',desc:'Unir el bot a un grupo',
+async execute(sock,msg,args,{chatId}){ const link=(args[0]||'').trim(); const code=link.match(/chat\.whatsapp\.com\/([0-9A-Za-z]+)/)?.[1]; if(!code) return sock.sendMessage(chatId,{text:'⚠️ Uso: ,join <link>'}); try{await sock.groupAcceptInvite(code); await sock.sendMessage(chatId,{text:'✅ Unido al grupo.'});}catch(e){await sock.sendMessage(chatId,{text:'❌ '+e.message});}}};

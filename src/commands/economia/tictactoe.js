@@ -1,0 +1,2 @@
+module.exports={name:'tictactoe',alias:['ttc','ttt','xo'],category:'economia',desc:'TicTacToe',
+async execute(sock,msg,args,{chatId}){await sock.sendMessage(chatId,{text:'⭕❌ *TicTacToe*\nSala creada/lista. (Versión básica activa; usa el chat para coordinar movimientos).'});} };

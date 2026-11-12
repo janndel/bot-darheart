@@ -1,0 +1,2 @@
+module.exports={name:'setgpstatus',alias:[],category:'admin',desc:'Publicar estado en el grupo (placeholder)',
+async execute(sock,msg,args,{chatId}){ await sock.sendMessage(chatId,{text:'ℹ️ *setgpstatus*: esta función depende de soporte de estados de grupo en la librería actual. Texto recibido: '+(args.join(' ')||'(vacío)')}); }};

@@ -1,0 +1,3 @@
+const fs=require('fs'),path=require('path');const {writeJsonAtomic}=require('../../lib/json-store');const F=path.join(process.env.HOME,'packname.json');
+module.exports={name:'delmeta',alias:['delstickermeta'],category:'stickers',desc:'Restablecer meta de stickers',
+async execute(sock,msg,args,{chatId}){writeJsonAtomic(F,{nombre:'DARHEART',autor:'JANNDEL'}); await sock.sendMessage(chatId,{text:'✅ Meta restablecida.'});}};

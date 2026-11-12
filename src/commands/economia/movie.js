@@ -1,0 +1,2 @@
+module.exports={name:'movie',alias:['peli','advp','pelicula'],category:'economia',desc:'Adivina la película',
+async execute(sock,msg,args,{chatId}){const m=[{e:'🦁👑',n:'el rey leon'},{e:'🧙‍♂️💍',n:'el señor de los anillos'},{e:'🚢🧊❤️',n:'titanic'}]; const x=m[Math.floor(Math.random()*m.length)]; await sock.sendMessage(chatId,{text:'🎬 *MOVIE*\n\n'+x.e+'\n\nRespuesta: _'+x.n+'_'});} };

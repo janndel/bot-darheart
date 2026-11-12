@@ -1,0 +1,2 @@
+module.exports={name:'ocr',alias:['leerimg','texto'],category:'general',desc:'Extraer texto de imagen',
+async execute(sock,msg,args,{chatId}){await sock.sendMessage(chatId,{text:'🔎 OCR no disponible en este entorno (falta motor OCR). Envía la imagen y usa un servicio externo por ahora.'});}};

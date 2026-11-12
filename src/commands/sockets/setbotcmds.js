@@ -1,0 +1,3 @@
+const fs=require('fs'),path=require('path');const {writeJsonAtomic}=require('../../lib/json-store');const F=path.join(process.env.HOME,'config.json');
+module.exports={name:'setbotcmds',alias:["setcmds"],category:'sockets',desc:'Gestionar comandos personalizados',
+async execute(sock,msg,args,{chatId}){const v=args.join(' ').trim(); if(!v) return sock.sendMessage(chatId,{text:'⚠️ Uso: ,setbotcmds <valor>'}); let c={}; try{c=JSON.parse(fs.readFileSync(F,'utf8'))}catch{} c['customCmds']=v; writeJsonAtomic(F,c); await sock.sendMessage(chatId,{text:'✅ Gestionar comandos personalizados actualizado.'});}};

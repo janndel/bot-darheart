@@ -1,0 +1,4 @@
+const gs=require('../../lib/gacha-store'); const fs=require('fs');
+module.exports={name:'robwaifu',alias:["robarwaifu"],category:'gacha',desc:'robwaifu',
+async execute(sock,msg,args,{chatId}){const m=msg.message.extendedTextMessage?.contextInfo?.mentionedJid; if(!m||!m.length) return sock.sendMessage(chatId,{text:'⚠️ Uso: ,robwaifu @usuario'}); const sender=msg.key.participant||msg.key.remoteJid; const ns=String(sender).split('@')[0].split(':')[0]; const nt=String(m[0]).split('@')[0].split(':')[0]; const d=gs.load(); if(!d.users[nt]||!(d.users[nt].chars||[]).length) return sock.sendMessage(chatId,{text:'❌ Ese usuario no tiene personajes.'}); if(Math.random()<0.5) return sock.sendMessage(chatId,{text:'🚨 Fallaste el robo.'}); if(!d.users[ns]) d.users[ns]={chars:[]}; const c=d.users[nt].chars.pop(); d.users[ns].chars.push(c); d.claims[c.name]=ns; gs.save(d); await sock.sendMessage(chatId,{text:'🕵️ @'+ns+' robó *'+c.name+'* a @'+nt,mentions:[sender,m[0]]});}
+};

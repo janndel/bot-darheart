@@ -1,0 +1,3 @@
+const fs=require('fs'),path=require('path');const {writeJsonAtomic}=require('../../lib/json-store');const F=path.join(process.env.HOME,'config.json');
+module.exports={name:'setbotname',alias:["setname"],category:'sockets',desc:'Cambiar nombre del bot',
+async execute(sock,msg,args,{chatId}){const v=args.join(' ').trim(); if(!v) return sock.sendMessage(chatId,{text:'⚠️ Uso: ,setbotname <valor>'}); let c={}; try{c=JSON.parse(fs.readFileSync(F,'utf8'))}catch{} c['botName']=v; writeJsonAtomic(F,c); await sock.sendMessage(chatId,{text:'✅ Cambiar nombre del bot actualizado.'});}};

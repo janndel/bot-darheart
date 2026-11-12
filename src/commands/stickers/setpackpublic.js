@@ -1,0 +1,3 @@
+const s=require('../../lib/stickerpacks-store');
+module.exports={name:'setpackpublic',alias:['setpackpub','packpublic'],category:'stickers',desc:'Pack público',
+async execute(sock,msg,args,{chatId}){const name=args.join(' ').trim(); const d=s.load(); if(!d[name]) return sock.sendMessage(chatId,{text:'❌ Pack no existe.'}); d[name].private=false; s.save(d); await sock.sendMessage(chatId,{text:'🌐 Pack público: '+name});}};

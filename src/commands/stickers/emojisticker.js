@@ -1,0 +1,2 @@
+module.exports={name:'emojisticker',alias:['emojianimado','emojianim'],category:'stickers',desc:'Emoji a sticker',
+async execute(sock,msg,args,{chatId}){const e=args[0]; if(!e) return sock.sendMessage(chatId,{text:'⚠️ Uso: ,emojisticker 😀'}); const url='https://api.popcat.xyz/emoji?emoji='+encodeURIComponent(e); try{const r=await fetch(url); const b=Buffer.from(await r.arrayBuffer()); await sock.sendMessage(chatId,{sticker:b});}catch(err){await sock.sendMessage(chatId,{text:'❌ '+err.message});}}};

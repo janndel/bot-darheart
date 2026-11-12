@@ -1,0 +1,3 @@
+const s=require('../../lib/stickerpacks-store');
+module.exports={name:'setpackprivate',alias:['setpackpriv','packprivate'],category:'stickers',desc:'Pack privado',
+async execute(sock,msg,args,{chatId}){const name=args.join(' ').trim(); const d=s.load(); if(!d[name]) return sock.sendMessage(chatId,{text:'❌ Pack no existe.'}); d[name].private=true; s.save(d); await sock.sendMessage(chatId,{text:'🔒 Pack privado: '+name});}};

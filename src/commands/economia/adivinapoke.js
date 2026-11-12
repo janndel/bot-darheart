@@ -1,0 +1,2 @@
+module.exports={name:'adivinapoke',alias:['pokeguess'],category:'economia',desc:'Adivina el Pokémon',
+async execute(sock,msg,args,{chatId}){const id=1+Math.floor(Math.random()*151); const url='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/'+id+'.png'; await sock.sendMessage(chatId,{image:{url},caption:'❓ ¿Qué Pokémon es? (ID '+id+')'});} };

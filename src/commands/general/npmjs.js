@@ -1,0 +1,4 @@
+const https=require('https');
+function get(u){return new Promise((r,j)=>https.get(u,{headers:{'User-Agent':'DARHEART'}},x=>{let d='';x.on('data',c=>d+=c);x.on('end',()=>r(d))}).on('error',j));}
+module.exports={name:'npmjs',alias:['npmdl','npm'],category:'general',desc:'Buscar paquete npm',
+async execute(sock,msg,args,{chatId}){const q=args.join(' ').trim(); if(!q) return sock.sendMessage(chatId,{text:'⚠️ Uso: ,npm <paquete>'}); try{const j=JSON.parse(await get('https://registry.npmjs.org/'+encodeURIComponent(q))); if(j.error) return sock.sendMessage(chatId,{text:'❌ No encontrado.'}); const v=j['dist-tags']?.latest; const info=j.versions?.[v]||{}; await sock.sendMessage(chatId,{text:'📦 *'+j.name+'*\nVersión: '+v+'\nDesc: '+(info.description||'-')+'\nhttps://www.npmjs.com/package/'+j.name});}catch(e){await sock.sendMessage(chatId,{text:'❌ '+e.message});}}};

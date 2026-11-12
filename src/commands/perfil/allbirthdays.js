@@ -1,0 +1,1 @@
+module.exports={...require('./birthdays'), name:'allbirthdays', alias:['allbirths'], desc:'Ver todos los cumpleaños'};

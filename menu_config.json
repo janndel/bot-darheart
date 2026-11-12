@@ -1,0 +1,546 @@
+{
+  "titulo": "JANNDEL",
+  "nombre_bot": "DARHEART",
+  "version": "v1.0",
+  "secciones": [
+    {
+      "id": "owner",
+      "emoji": "👑",
+      "titulo": "OWNER",
+      "comandos": [
+        {
+          "nombre": "key",
+          "desc": "Activar premium en el chat"
+        },
+        {
+          "nombre": "keys",
+          "desc": "Panel de claves (solo owner)"
+        },
+        {
+          "nombre": "backup",
+          "desc": "Respaldar datos a tu privado"
+        },
+        {
+          "nombre": "estadisticas",
+          "desc": "Estadísticas del bot"
+        },
+        {
+          "nombre": "broadcast",
+          "desc": "Mensaje a todos los grupos"
+        },
+        {
+          "nombre": "limpiar",
+          "desc": "Borrar archivos temporales"
+        },
+        {
+          "nombre": "audit",
+          "desc": "Ver comandos cargados"
+        },
+        {
+          "nombre": "subbot",
+          "desc": "Solicitar sub-bot"
+        },
+        {
+          "nombre": "sublist",
+          "desc": "Panel de sub-bots"
+        },
+        {
+          "nombre": "reload",
+          "desc": "Recargar comandos desde archivos"
+        }
+      ]
+    },
+    {
+      "id": "admin",
+      "emoji": "🛡️",
+      "titulo": "ADMIN",
+      "comandos": [
+        {
+          "nombre": "cerrar",
+          "desc": "Cerrar el grupo"
+        },
+        {
+          "nombre": "abrir",
+          "desc": "Abrir el grupo"
+        },
+        {
+          "nombre": "setpfp",
+          "desc": "Cambiar foto del grupo"
+        },
+        {
+          "nombre": "mutear",
+          "desc": "Auto-borrar mensajes de un usuario"
+        },
+        {
+          "nombre": "desmutear",
+          "desc": "Dejar de borrar mensajes"
+        },
+        {
+          "nombre": "del",
+          "desc": "Borrar mensaje citado"
+        },
+        {
+          "nombre": "antilink",
+          "desc": "Filtro de enlaces on/off"
+        },
+        {
+          "nombre": "promote",
+          "desc": "Ascender a admin"
+        },
+        {
+          "nombre": "demote",
+          "desc": "Quitar admin"
+        },
+        {
+          "nombre": "bienvenida",
+          "desc": "Configurar bienvenida"
+        },
+        {
+          "nombre": "despedida",
+          "desc": "Configurar despedida"
+        },
+        {
+          "nombre": "cambiarenlace",
+          "desc": "Regenerar enlace del grupo"
+        },
+        {
+          "nombre": "tag",
+          "desc": "Mencionar a todos"
+        },
+        {
+          "nombre": "topactivos",
+          "desc": "Top 10 más activos (o integrantes)"
+        },
+        {
+          "nombre": "topinactivos",
+          "desc": "Integrantes sin actividad"
+        },
+        {
+          "nombre": "panel",
+          "desc": "Panel de control del grupo"
+        },
+        {
+          "nombre": "exportar",
+          "desc": "Exportar actividad a CSV"
+        },
+        {
+          "nombre": "limpiar-inactivos",
+          "desc": "Expulsar inactivos (owner)"
+        },
+        {
+          "nombre": "modoadmin",
+          "desc": "Solo admins usan comandos"
+        },
+        {
+          "nombre": "reglas",
+          "desc": "Ver/editar reglas"
+        },
+        {
+          "nombre": "ban",
+          "desc": "Expulsar del grupo"
+        },
+        {
+          "nombre": "advertencia",
+          "desc": "Warns (3 = kick)"
+        },
+        {
+          "nombre": "aviso",
+          "desc": "Aviso masivo"
+        },
+        {
+          "nombre": "aprobartodo",
+          "desc": "Aprobar solicitudes"
+        },
+        {
+          "nombre": "link",
+          "desc": "Enlace del grupo"
+        },
+        {
+          "nombre": "setmenu",
+          "desc": "Imagen personalizada del menú"
+        },
+        {
+          "nombre": "setred",
+          "desc": "Guardar red social"
+        },
+        {
+          "nombre": "setnombre",
+          "desc": "Cambiar nombre del bot"
+        },
+        {
+          "nombre": "setperfil",
+          "desc": "Foto de perfil del bot"
+        },
+        {
+          "nombre": "activarbot",
+          "desc": "Activar bot en el grupo"
+        },
+        {
+          "nombre": "desactivarbot",
+          "desc": "Desactivar bot en el grupo"
+        },
+        {
+          "nombre": "setnsfw",
+          "desc": "Filtro NSFW on/off"
+        },
+        {
+          "nombre": "addfiltro",
+          "desc": "Añadir palabra al filtro"
+        },
+        {
+          "nombre": "quitarfiltro",
+          "desc": "Quitar palabra del filtro"
+        }
+      ]
+    },
+    {
+      "id": "general",
+      "emoji": "👥",
+      "titulo": "GENERAL",
+      "comandos": [
+        {
+          "nombre": "menu",
+          "desc": "Muestra este menú"
+        },
+        {
+          "nombre": "ping",
+          "desc": "Mide la velocidad del bot"
+        },
+        {
+          "nombre": "bot",
+          "desc": "Info del bot (uptime, versión)"
+        },
+        {
+          "nombre": "botlist",
+          "desc": "Lista de bots activos"
+        },
+        {
+          "nombre": "status",
+          "desc": "Estado del bot en vivo"
+        },
+        {
+          "nombre": "perfil",
+          "desc": "Foto de perfil de un usuario"
+        },
+        {
+          "nombre": "fotogrupo",
+          "desc": "Foto del grupo actual"
+        },
+        {
+          "nombre": "consejo",
+          "desc": "Envía un consejo aleatorio"
+        },
+        {
+          "nombre": "say",
+          "desc": "El bot repite un texto"
+        },
+        {
+          "nombre": "qr",
+          "desc": "Genera código QR"
+        },
+        {
+          "nombre": "red",
+          "desc": "Muestra red social del grupo"
+        },
+        {
+          "nombre": "reporte",
+          "desc": "Reporta a los admins"
+        },
+        {
+          "nombre": "reportes",
+          "desc": "Ver tickets abiertos"
+        }
+      ]
+    },
+    {
+      "id": "economia",
+      "emoji": "💰",
+      "titulo": "ECONOMÍA",
+      "comandos": [
+        {
+          "nombre": "banco",
+          "desc": "Depositar o sacar del banco"
+        },
+        {
+          "nombre": "blackjack",
+          "desc": "Blackjack apostando coins"
+        },
+        {
+          "nombre": "cartera",
+          "desc": "Ver dinero, banco, deuda y seguro"
+        },
+        {
+          "nombre": "carrera",
+          "desc": "Apostar a carreras de caballos"
+        },
+        {
+          "nombre": "cazar",
+          "desc": "Cazar y ganar coins (90m)"
+        },
+        {
+          "nombre": "cofre",
+          "desc": "Abrir cofre cada 12h"
+        },
+        {
+          "nombre": "coinflip",
+          "desc": "Apostar cara o cruz"
+        },
+        {
+          "nombre": "contrabando",
+          "desc": "Contrabando de alto riesgo (2h)"
+        },
+        {
+          "nombre": "crimen",
+          "desc": "Crimen con ganancia/pérdida (2h)"
+        },
+        {
+          "nombre": "daily",
+          "desc": "Recompensa diaria (24h)"
+        },
+        {
+          "nombre": "dados",
+          "desc": "Apuesta a un número con 2 dados"
+        },
+        {
+          "nombre": "duelo",
+          "desc": "Retar apostando coins"
+        },
+        {
+          "nombre": "empresa",
+          "desc": "Comprar y administrar empresa"
+        },
+        {
+          "nombre": "equipopesca",
+          "desc": "Pescar y ganar coins (5m)"
+        },
+        {
+          "nombre": "explorar",
+          "desc": "Explorar y hallar coins (45m)"
+        },
+        {
+          "nombre": "hackear",
+          "desc": "Hackear el banco de alguien (2h)"
+        },
+        {
+          "nombre": "inventario",
+          "desc": "Ver items, banco y protecciones"
+        },
+        {
+          "nombre": "invertir",
+          "desc": "Invertir con riesgo (30m)"
+        },
+        {
+          "nombre": "loteria",
+          "desc": "Adivina un número del 1-100"
+        },
+        {
+          "nombre": "mendigar",
+          "desc": "Pedir limosna (10m)"
+        },
+        {
+          "nombre": "minar",
+          "desc": "Minar y ganar coins (30s)"
+        },
+        {
+          "nombre": "pagar",
+          "desc": "Pagar tu préstamo pendiente"
+        },
+        {
+          "nombre": "prestamo",
+          "desc": "Pedir préstamo al banco"
+        },
+        {
+          "nombre": "rankcoins",
+          "desc": "Top 10 millonarios"
+        },
+        {
+          "nombre": "regalar",
+          "desc": "Transferir coins"
+        },
+        {
+          "nombre": "robar",
+          "desc": "Intentar robar (30m)"
+        },
+        {
+          "nombre": "ruletacasino",
+          "desc": "Ruleta: color o número"
+        },
+        {
+          "nombre": "ruletarusa",
+          "desc": "Apuesta 50/50 de coins"
+        },
+        {
+          "nombre": "seguro",
+          "desc": "Seguro anti robos por 24h"
+        },
+        {
+          "nombre": "slot",
+          "desc": "Máquina tragamonedas"
+        },
+        {
+          "nombre": "tienda",
+          "desc": "Comprar items con coins"
+        },
+        {
+          "nombre": "work",
+          "desc": "Trabajar y ganar coins (1h)"
+        }
+      ]
+    },
+    {
+      "id": "juegos",
+      "emoji": "🎮",
+      "titulo": "JUEGOS",
+      "comandos": [
+        {
+          "nombre": "dado",
+          "desc": "Lanza un dado (1-6)"
+        },
+        {
+          "nombre": "moneda",
+          "desc": "Cara o cruz"
+        },
+        {
+          "nombre": "8ball",
+          "desc": "Bola mágica de respuestas"
+        },
+        {
+          "nombre": "ship",
+          "desc": "Mide el amor entre 2 personas"
+        },
+        {
+          "nombre": "piropo",
+          "desc": "Envía un piropo aleatorio"
+        },
+        {
+          "nombre": "chiste",
+          "desc": "Cuenta un chiste"
+        },
+        {
+          "nombre": "frase",
+          "desc": "Frase motivacional"
+        }
+      ]
+    },
+    {
+      "id": "retos",
+      "emoji": "🔥",
+      "titulo": "RETOS",
+      "comandos": [
+        {
+          "nombre": "reto",
+          "desc": "Reto hot a un miembro aleatorio"
+        },
+        {
+          "nombre": "rosa",
+          "desc": "Regala una rosa a alguien"
+        },
+        {
+          "nombre": "besar",
+          "desc": "Dale un beso a alguien"
+        },
+        {
+          "nombre": "morder",
+          "desc": "Muerde a alguien"
+        },
+        {
+          "nombre": "coger",
+          "desc": "Acción explícita con alguien"
+        }
+      ]
+    },
+    {
+      "id": "accion",
+      "emoji": "💥",
+      "titulo": "ACCIÓN",
+      "comandos": [
+        {
+          "nombre": "tomate",
+          "desc": "Lanza un tomate"
+        },
+        {
+          "nombre": "martillazo",
+          "desc": "Da un martillazo"
+        },
+        {
+          "nombre": "cachetada",
+          "desc": "Da una cachetada"
+        },
+        {
+          "nombre": "patada",
+          "desc": "Da una patada"
+        },
+        {
+          "nombre": "piedra",
+          "desc": "Lanza una piedra"
+        }
+      ]
+    },
+    {
+      "id": "stickers",
+      "emoji": "🎨",
+      "titulo": "STICKERS",
+      "comandos": [
+        {
+          "nombre": "sticker",
+          "desc": "Convierte imagen/video en sticker"
+        },
+        {
+          "nombre": "attp",
+          "desc": "Sticker de texto con degradado"
+        },
+        {
+          "nombre": "ttp",
+          "desc": "Sticker de texto simple"
+        },
+        {
+          "nombre": "menubrat",
+          "desc": "Sticker estilo brat"
+        },
+        {
+          "nombre": "random",
+          "desc": "Sticker aleatorio"
+        },
+        {
+          "nombre": "packname",
+          "desc": "Cambiar nombre del pack"
+        }
+      ]
+    },
+    {
+      "id": "descargas",
+      "emoji": "📥",
+      "titulo": "DESCARGAS",
+      "comandos": [
+        {
+          "nombre": "m",
+          "desc": "Buscar y descargar música"
+        },
+        {
+          "nombre": "play",
+          "desc": "Descargar audio de YouTube"
+        },
+        {
+          "nombre": "video",
+          "desc": "Descargar video de YouTube"
+        },
+        {
+          "nombre": "tiktok",
+          "desc": "Descargar video de TikTok"
+        },
+        {
+          "nombre": "facebook",
+          "desc": "Descargar video de Facebook"
+        },
+        {
+          "nombre": "instagram",
+          "desc": "Descargar video de Instagram"
+        },
+        {
+          "nombre": "x",
+          "desc": "Descargar video de X/Twitter"
+        }
+      ]
+    }
+  ]
+}

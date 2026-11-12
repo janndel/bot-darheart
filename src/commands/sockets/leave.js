@@ -1,0 +1,2 @@
+module.exports={name:'leave',alias:['salir'],category:'sockets',desc:'Salir de un grupo',
+async execute(sock,msg,args,{chatId}){if(!chatId.endsWith('@g.us')) return sock.sendMessage(chatId,{text:'⚠️ Solo en grupos.'}); try{await sock.groupLeave(chatId);}catch(e){await sock.sendMessage(chatId,{text:'❌ '+e.message});}}};

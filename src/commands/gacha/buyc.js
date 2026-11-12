@@ -1,0 +1,4 @@
+const gs=require('../../lib/gacha-store'); const fs=require('fs');
+module.exports={name:'buyc',alias:["buycharacter","buychar"],category:'gacha',desc:'buyc',
+async execute(sock,msg,args,{chatId,config}){const d=gs.load(); const id=args[0]; if(!id||!d.market[id]) return sock.sendMessage(chatId,{text:'⚠️ Uso: ,buyc <id>'}); const sender=msg.key.participant||msg.key.remoteJid; const n=String(sender).split('@')[0].split(':')[0]; if(!d.users[n]) d.users[n]={chars:[]}; const item=d.market[id]; if(item.claimedBy) return sock.sendMessage(chatId,{text:'❌ Ya reclamado.'}); item.claimedBy=n; d.users[n].chars.push({id,name:item.name,at:Date.now()}); d.claims[item.name]=n; delete d.market[id]; gs.save(d); await sock.sendMessage(chatId,{text:'✅ Compraste/reclamaste *'+item.name+'*',mentions:[sender]});}
+};

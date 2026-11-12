@@ -1,0 +1,3 @@
+const fs=require('fs'),path=require('path');const {writeJsonAtomic}=require('../../lib/json-store');const F=path.join(process.env.HOME,'packname.json');
+module.exports={name:'setstickermeta',alias:['setmeta'],category:'stickers',desc:'Establecer pack/autor por defecto',
+async execute(sock,msg,args,{chatId}){const t=args.join(' '); const [nombre,autor]=t.split('|').map(x=>x&&x.trim()); if(!nombre) return sock.sendMessage(chatId,{text:'⚠️ Uso: ,setstickermeta <pack>|<autor>'}); writeJsonAtomic(F,{nombre,autor:autor||'DARHEART'}); await sock.sendMessage(chatId,{text:'✅ Meta actualizada.'});}};

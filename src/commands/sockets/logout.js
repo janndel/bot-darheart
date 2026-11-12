@@ -1,0 +1,2 @@
+module.exports={name:'logout',alias:[],category:'sockets',desc:'Cerrar sesión del bot',
+async execute(sock,msg,args,{chatId}){try{await sock.logout(); await sock.sendMessage(chatId,{text:'👋 Sesión cerrada.'});}catch(e){await sock.sendMessage(chatId,{text:'❌ '+e.message});}}};

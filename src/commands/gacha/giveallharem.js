@@ -1,0 +1,4 @@
+const gs=require('../../lib/gacha-store'); const fs=require('fs');
+module.exports={name:'giveallharem',alias:[],category:'gacha',desc:'giveallharem',
+async execute(sock,msg,args,{chatId}){const m=msg.message.extendedTextMessage?.contextInfo?.mentionedJid; if(!m||!m.length) return sock.sendMessage(chatId,{text:'⚠️ Uso: ,giveallharem @usuario'}); const sender=msg.key.participant||msg.key.remoteJid; const ns=String(sender).split('@')[0].split(':')[0]; const nt=String(m[0]).split('@')[0].split(':')[0]; const d=gs.load(); if(!d.users[ns]) d.users[ns]={chars:[]}; if(!d.users[nt]) d.users[nt]={chars:[]}; const moved=d.users[ns].chars.splice(0); d.users[nt].chars.push(...moved); moved.forEach(c=>d.claims[c.name]=nt); gs.save(d); await sock.sendMessage(chatId,{text:'🎁 @'+ns+' regaló '+moved.length+' personajes a @'+nt,mentions:[sender,m[0]]});}
+};

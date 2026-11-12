@@ -1,0 +1,3 @@
+const s=require('../../lib/stickerpacks-store');
+module.exports={name:'setstickerpackdesc',alias:['setpackdesc','packdesc'],category:'stickers',desc:'Descripción de pack',
+async execute(sock,msg,args,{chatId}){const name=args[0]; const desc=args.slice(1).join(' ').trim(); if(!name||!desc) return sock.sendMessage(chatId,{text:'⚠️ Uso: ,setstickerpackdesc <pack> <desc>'}); const d=s.load(); if(!d[name]) return sock.sendMessage(chatId,{text:'❌ Pack no existe.'}); d[name].desc=desc; s.save(d); await sock.sendMessage(chatId,{text:'✅ Descripción actualizada.'});}};

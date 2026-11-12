@@ -1,0 +1,23 @@
+{
+  "name": "bot-darheart",
+  "version": "1.0.0",
+  "description": "DARHEART bot de WhatsApp (modo local, sin MongoDB)",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node index.js",
+    "telegram": "node telegram-bot.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@mrzkyzdnii/baileys": "^0.3.18-mrzkyzdnii.3",
+    "axios": "^1.20.0",
+    "dotenv": "^18.0.6",
+    "express": "^5.2.1",
+    "jimp": "^1.6.1",
+    "node-webpmux": "^3.2.1",
+    "pino": "^10.4.0"
+  }
+}

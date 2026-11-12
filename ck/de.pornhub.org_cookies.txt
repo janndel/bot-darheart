@@ -1,0 +1,34 @@
+# Netscape HTTP Cookie File
+# https://curl.haxx.se/rfc/cookie_spec.html
+# This is a generated file! Do not edit.
+
+.pornhub.org	TRUE	/	TRUE	1791618511	ua	08d248cdc6d614245081f40888e18867
+.pornhub.org	TRUE	/	TRUE	1792136911	platform	mobile
+.pornhub.org	TRUE	/	TRUE	1823068111	ss	618666991612716380
+.pornhub.org	TRUE	/	TRUE	1823068111	sessid	948505320697316771
+.pornhub.org	TRUE	/	TRUE	1794124111	comp_detect-cookies	99918.100000
+.pornhub.org	TRUE	/	TRUE	1794124111	fg_afaf12e314c5419a855ddc0bf120670f	42030.100000
+.pornhub.org	TRUE	/	TRUE	1794124111	fg_55e3b6f0afd46366d6fa797544b15af2	37445.100000
+.pornhub.org	TRUE	/	TRUE	1794124111	fg_7e663154ded3d3eac4af77cfff94b32a	85864.100000
+.pornhub.org	TRUE	/	TRUE	1794124111	fg_41b1995ee5530001895f2da326e410dd	36838.100000
+.pornhub.org	TRUE	/	TRUE	1794124111	fg_4a2b3971bfa3acc23d1d718e28b29e5b	50562.100000
+.pornhub.org	TRUE	/	TRUE	1794124111	fg_7d31324eedb583147b6dcbea0051c868	62892.100000
+de.pornhub.org	FALSE	/	TRUE	0	__s	6AC89C4E-42FE722901BB16D383-1B0DA1C0
+de.pornhub.org	FALSE	/	TRUE	1823089037	__l	6AC89C4E-42FE722901BB16D383-1B0DA1C0
+.de.pornhub.org	TRUE	/	TRUE	1794124113	tj_UUID_v2	ChBJ8hJ65yNDo6sxRVKpLGhWEgwIz7ii1gYQ1_uYvgMYBCoMCNC4otYGELHyirUBShA2fvDbpQ9EOY0x9i3DWZYe
+.pornhub.org	TRUE	/	FALSE	1791535716	accessAgeDisclaimerPH	2
+.pornhub.org	TRUE	/	FALSE	0	d_fs	1
+.pornhub.org	TRUE	/	FALSE	1794124119	d_uid	b3bd7ac9-c8e6-a02d-0a06-5a6ca9337945
+.pornhub.org	TRUE	/	FALSE	1794124119	d_uidb	b3bd7ac9-c8e6-a02d-0a06-5a6ca9337945
+.pornhub.org	TRUE	/	FALSE	1826092274	_ga	GA1.1.557488168.1791532121
+.pornhub.org	TRUE	/	TRUE	1807084121	g_state	{"i_l":0,"i_ll":1791532121596,"i_b":"xP3ZxMWp57KFbzDICXzL24zkd3+0uN7239r75QK//Yg","i_e":{"enable_itp_optimization":24},"i_et":1791532121596}
+.pornhub.org	TRUE	/	TRUE	1823068156	cookieConsent	3
+.pornhub.org	TRUE	/	TRUE	1791618556	desired_username	ea8e875%7Cjessandermedina38%40gmail.com
+.pornhub.org	TRUE	/	TRUE	1807343356	il	v15e0pt1iRRzWCZ0DvhG6PVRLUq2twINwLrgTIRgrsB6MxODA3MzQzMzU1VjI3eUgxOFpwSk5PSVB2NUJHNzkyZy0zcnA2ZDlQb3RCS2VJUk5seg..
+.pornhub.org	TRUE	/	TRUE	1823068156	bs	4c208ddc65162fbc8511da2400c57c2b
+.pornhub.org	TRUE	/	TRUE	1823068156	bsdd	4c208ddc65162fbc8511da2400c57c2b
+.pornhub.org	TRUE	/	TRUE	1823068156	vlc	390317680030148214
+.pornhub.org	TRUE	/	TRUE	0	htjf-mobile	3
+.de.pornhub.org	TRUE	/	TRUE	1794124271	tj_UUID	ChBJ8hJ65yNDo6sxRVKpLGhWEgwIz7ii1gYQ1_uYvgMYBCIgNGMyMDhkZGM2NTE2MmZiYzg1MTFkYTI0MDBjNTdjMmIqDAjuuaLWBhDygaeDAUoQNn7w26UPRDmNMfYtw1mWHg==
+de.pornhub.org	FALSE	/	FALSE	0	rp	3401535807:/bfO28yMVXU=
+.pornhub.org	TRUE	/	FALSE	1826092274	_ga_B39RFFWGYY	GS2.1.s1791532120$o1$g1$t1791532273$j55$l0$h0

@@ -1,0 +1,2 @@
+module.exports={name:'math',alias:['mates'],category:'economia',desc:'Juego de matemáticas',
+async execute(sock,msg,args,{chatId}){const a=1+Math.floor(Math.random()*20), b=1+Math.floor(Math.random()*20); await sock.sendMessage(chatId,{text:'🧮 *MATH*\n\n¿Cuánto es '+a+' + '+b+'?\nRespuesta: _'+(a+b)+'_'});} };

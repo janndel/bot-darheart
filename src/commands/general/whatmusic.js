@@ -1,0 +1,2 @@
+module.exports={name:'whatmusic',alias:['shazam'],category:'general',desc:'Identificar música',
+async execute(sock,msg,args,{chatId}){await sock.sendMessage(chatId,{text:'🎵 Identificación de música no disponible en este entorno (requiere servicio Shazam/API).'});} };

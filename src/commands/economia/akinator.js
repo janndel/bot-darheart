@@ -1,0 +1,2 @@
+module.exports={name:'akinator',alias:['aki'],category:'economia',desc:'Juego tipo Akinator (simple)',
+async execute(sock,msg,args,{chatId}){await sock.sendMessage(chatId,{text:'🧞 *AKINATOR*\nPiensa en un personaje/animal y responde mentalmente.\n¿Es real? ¿Es famoso? ¿Es de anime?\n(Esta versión es simplificada y ya está activa).'});} };

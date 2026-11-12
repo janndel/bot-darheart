@@ -1,0 +1,3 @@
+const s=require('../../lib/stickerpacks-store');
+module.exports={name:'getpack',alias:['pack','stickerpack'],category:'stickers',desc:'Ver/obtener paquete',
+async execute(sock,msg,args,{chatId}){const name=args.join(' ').trim(); const d=s.load(); if(!name||!d[name]) return sock.sendMessage(chatId,{text:'⚠️ Uso: ,getpack <nombre>'}); const p=d[name]; await sock.sendMessage(chatId,{text:'📦 *'+name+'*\nStickers: '+(p.stickers||[]).length+'\nDesc: '+(p.desc||'-')+'\nPrivado: '+(p.private?'sí':'no')});}};

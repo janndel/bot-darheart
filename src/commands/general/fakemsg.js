@@ -1,0 +1,2 @@
+module.exports={name:'fakemsg',alias:['fakeedit'],category:'general',desc:'Enviar texto simulado',
+async execute(sock,msg,args,{chatId}){const text=args.join(' ').trim()||'Texto'; await sock.sendMessage(chatId,{text:'📝 '+text});}};

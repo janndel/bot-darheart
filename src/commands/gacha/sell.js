@@ -1,0 +1,4 @@
+const gs=require('../../lib/gacha-store'); const fs=require('fs');
+module.exports={name:'sell',alias:["vender"],category:'gacha',desc:'sell',
+async execute(sock,msg,args,{chatId}){const value=parseInt(args[0],10); const name=args.slice(1).join(' ').trim(); if(!value||!name) return sock.sendMessage(chatId,{text:'⚠️ Uso: ,sell <valor> <waifu>'}); const sender=msg.key.participant||msg.key.remoteJid; const n=String(sender).split('@')[0].split(':')[0]; const d=gs.load(); if(!d.users[n]) d.users[n]={chars:[]}; const i=d.users[n].chars.findIndex(c=>c.name.toLowerCase()===name.toLowerCase()); if(i<0) return sock.sendMessage(chatId,{text:'❌ No tienes ese personaje.'}); const [c]=d.users[n].chars.splice(i,1); const id=Date.now().toString(36); d.market[id]={name:c.name,price:value,seller:n,at:Date.now()}; delete d.claims[c.name]; gs.save(d); await sock.sendMessage(chatId,{text:'🏷️ '+c.name+' puesto en venta por '+value+' (ID '+id+')'});}
+};

@@ -1,0 +1,2 @@
+const fs=require('fs'),path=require('path');const {writeJsonAtomic}=require('./json-store');const FILE=path.join(process.env.HOME,'stickerpacks.json');
+function load(){try{return JSON.parse(fs.readFileSync(FILE,'utf8'))}catch{return{}}} function save(d){writeJsonAtomic(FILE,d)} module.exports={load,save,FILE};
