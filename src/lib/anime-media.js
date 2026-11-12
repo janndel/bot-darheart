@@ -236,12 +236,12 @@ async function sendReaction(sock, chatId, msg, opts) {
         }
       }
       if (isMp4) {
-        try { await sock.sendMessage(chatId, { video: buf, mimetype: 'video/mp4', gifPlayback: true, caption: text, mentions }); return true; } catch (e) {}
+        try { await sock.sendMessage(chatId, { video: { url, mimetype: 'video/mp4', gifPlayback: true }, caption: text, mentions }); return true; } catch (e) {}
       }
       if (isImage) {
-        try { await sock.sendMessage(chatId, { image: buf, caption: text, mentions }); return true; } catch (e) {}
+        try { await sock.sendMessage(chatId, { image: { url }, caption: text, mentions }); return true; } catch (e) {}
       }
-      try { await sock.sendMessage(chatId, { image: buf, caption: text, mentions }); return true; } catch (e) {}
+      try { await sock.sendMessage(chatId, { image: { url }, caption: text, mentions }); return true; } catch (e) {}
     } catch (e) {}
   }
   await sock.sendMessage(chatId, { text, mentions });

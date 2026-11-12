@@ -273,7 +273,7 @@ async function descargarInstagram(sock, chatId, url, cookie) {
         const res = await axios.get(media.url, {
             responseType: 'arraybuffer',
             timeout: 40000,
-            maxContentLength: 100 * 1024 * 1024,
+            maxContentLength: 15 * 1024 * 1024,
             headers: {
                 'User-Agent': 'Mozilla/5.0',
                 'Referer': 'https://www.instagram.com/'
@@ -377,12 +377,9 @@ async function enviarLista(sock, chatId, tmpDir, archivos, dominio) {
             const tipo = detectarTipo(nombre);
             if (tipo === 'unknown') continue;
             const size = fs.statSync(ruta).size;
-            if (tipo === 'video' && size > 64 * 1024 * 1024) {
-                const guardado = await guardarArchivoEnGaleria(ruta, nombre, 'movies');
-                await sock.sendMessage(chatId, {
-                    text: `✅ *Video guardado en tu galería*\n📁 ${path.basename(guardado)}\n📹 ${(size / 1024 / 1024).toFixed(2)} MB`
-                });
-                enviados++;
+            if (size > 15 * 1024 * 1024) {
+                try { fs.unlinkSync(ruta); } catch (e) {}
+                await sock.sendMessage(chatId, { text: `⚠️ El archivo supera el límite de 15 MB para ahorrar datos del servidor.` });
                 continue;
             }
             const buffer = fs.readFileSync(ruta);
@@ -447,7 +444,7 @@ async function descargar(sock, msg, args, { chatId }, job) {
                 const res = await axios.get(url, {
                     responseType: 'arraybuffer',
                     timeout: 40000,
-                    maxContentLength: 100 * 1024 * 1024,
+                    maxContentLength: 15 * 1024 * 1024,
                     headers,
                     signal: job?.abortController?.signal,
                     beforeRedirect: (opciones) => {
@@ -516,7 +513,7 @@ async function descargar(sock, msg, args, { chatId }, job) {
                                     const res = await axios.get(unicos[i].url, {
                                         responseType: 'arraybuffer',
                                         timeout: 40000,
-                                        maxContentLength: 100 * 1024 * 1024,
+                                        maxContentLength: 15 * 1024 * 1024,
                                         headers: { 'User-Agent': 'Mozilla/5.0' },
                                         signal: job?.abortController?.signal
                                     });
@@ -567,7 +564,7 @@ async function descargar(sock, msg, args, { chatId }, job) {
                     job,
                     onInfo: async (info) => {
                         verificarEspacio(Number(info.size) || 0, 350 * 1024 * 1024);
-                        if (info.tipo !== 'video' || (info.size <= 64 * 1024 * 1024 && info.duration <= 120)) return;
+                        if (info.tipo !== 'video' || (info.size <= 15 * 1024 * 1024 && info.duration <= 120)) return;
                         const partes = [];
                         if (info.size) partes.push(`~${(info.size / 1024 / 1024).toFixed(1)} MB`);
                         if (info.duration) partes.push(formatearDuracion(info.duration));
@@ -591,12 +588,10 @@ async function descargar(sock, msg, args, { chatId }, job) {
         // ✅ CASO 3: yt-dlp
         // ==========================================
         const esYouTube = /(^|\.)youtube\.com$|(^|\.)youtu\.be$/i.test(dominio);
-        const libreAhora = espacio().libre;
-        const maxBytes = libreAhora ? Math.max(50 * 1024 * 1024, libreAhora - 350 * 1024 * 1024) : 500 * 1024 * 1024;
         const flagsBase = [
             '--no-update',
             '--no-warnings',
-            '--max-filesize', `${Math.floor(maxBytes / 1024 / 1024)}M`,
+            '--max-filesize', '15M',
             '--socket-timeout', '30',
             '--retries', '3',
             '--no-check-certificates',
@@ -607,7 +602,7 @@ async function descargar(sock, msg, args, { chatId }, job) {
         else flagsBase.push('--playlist-end', '20');
 
         const intentos = esYouTube ? [
-            'best[ext=mp4]/best',
+            'best[height<=480][ext=mp4]/best[height<=480]/best[ext=mp4]',
             'bestvideo[ext=mp4]+bestaudio[ext=m4a]/best[ext=mp4]',
             'best[ext=gif]/best',
             'best'
@@ -667,7 +662,7 @@ async function descargar(sock, msg, args, { chatId }, job) {
                 responseType: 'arraybuffer',
                 timeout: 30000,
                 headers,
-                maxContentLength: 50 * 1024 * 1024,
+                maxContentLength: 15 * 1024 * 1024,
                 signal: job?.abortController?.signal,
                 beforeRedirect: (opciones) => {
                     if (hostBloqueado(opciones.hostname)) throw new Error('Redirección bloqueada por seguridad.');

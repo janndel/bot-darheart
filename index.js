@@ -111,7 +111,7 @@ app.get('/menu-image', (req, res) => {
         if (!base64) return res.status(404).send('sin imagen');
         const buffer = Buffer.from(base64, 'base64');
         const tipo = buffer[0] === 0x89 && buffer[1] === 0x50 ? 'image/png' : 'image/jpeg';
-        res.set('Cache-Control', 'no-store');
+        res.set('Cache-Control', 'public, max-age=86400');
         res.type(tipo).send(buffer);
     } catch (error) {
         res.status(404).send('sin imagen');
@@ -312,6 +312,26 @@ function copiarCookies() {
 copiarConfigsDelRepo();
 copiarCookies();
 // ==========================================
+
+// ==========================================
+// 🧠 CACHE GLOBAL DE METADATA DE GRUPOS (TTL 5 min)
+// ==========================================
+const META_CACHE = new Map();
+const META_CACHE_TTL = 5 * 60 * 1000;
+async function getMetaCache(chatId) {
+    const ahora = Date.now();
+    const hit = META_CACHE.get(chatId);
+    if (hit && (ahora - hit.ts) < META_CACHE_TTL) return hit.data;
+    const sockActual = global.__sock;
+    if (!sockActual) return null;
+    try {
+        const data = await sockActual.groupMetadata(chatId);
+        META_CACHE.set(chatId, { data, ts: ahora });
+        return data;
+    } catch (e) {
+        return null;
+    }
+}
 
 // ==========================================
 // 🚦 RATE LIMITING POR USUARIO
@@ -562,7 +582,6 @@ async function startBot() {
         sock.ev.on('creds.update', async () => {
             try {
                 await saveCreds();
-                if (authPersist) await authPersist.subirAuth();
             } catch (e) {}
         });
 
@@ -590,16 +609,6 @@ async function startBot() {
                 fs.writeFileSync(path.join(__dirname, 'bot.pid'), `${process.pid}\n`);
                 ownerAlerts.setSock(sock);
                 reminders.setSock(sock);
-                setTimeout(() => {
-                    try {
-                        const dl = require('./src/commands/download/dl');
-                        dl.reanudar(sock).then(n => {
-                            if (n) console.log(`♻️ Descargas reanudadas: ${n}`);
-                        }).catch(e => console.log('⚠️ Reanudar descargas:', e.message));
-                    } catch (e) {
-                        console.log('⚠️ Reanudar descargas:', e.message);
-                    }
-                }, 60000 + Math.floor(Math.random() * 30000));
                 setTimeout(() => {
                     reminders.restaurar(sock).then(n => { if (n) console.log(`⏰ Recordatorios activos: ${n}`); }).catch(() => {});
                 }, 90000 + Math.floor(Math.random() * 30000));
@@ -728,11 +737,11 @@ async function startBot() {
 
                 // Filtros de grupo
                 if (chatId.endsWith('@g.us') && !msg.key.fromMe && !text.startsWith(config.prefijo)) {
-                    let metaCache = null;
                     const esAdmin = async () => {
                         try {
-                            if (!metaCache) metaCache = await sock.groupMetadata(chatId);
-                            return metaCache.participants.find(p => soloNum(p.id) === senderNum)?.admin;
+                            const meta = await getMetaCache(chatId);
+                            if (!meta) return false;
+                            return meta.participants.find(p => soloNum(p.id) === senderNum)?.admin;
                         } catch { return false; }
                     };
 
@@ -829,7 +838,7 @@ async function startBot() {
                     if (chatId.endsWith('@g.us') && gc.modoadmin) {
                         const libres = ['menu', 'ping', 'bot', 'botlist', 'status', 'perfil', 'pfp', 'fotogrupo', 'gpfp', 'red', 'consejo', 'reglas', 'key', 'sticker', 's', 'qr', 'say', '8ball'];
                         if (!libres.includes(cmdName)) {
-                            const meta = await sock.groupMetadata(chatId);
+                            const meta = await getMetaCache(chatId);
                             const sEnG = meta.participants.find(p => soloNum(p.id) === senderNum);
                             if (!sEnG?.admin) {
                                 return await sock.sendMessage(chatId, {
@@ -885,7 +894,6 @@ async function startBot() {
                                 new Promise((_, rej) => setTimeout(() => rej(new Error('Timeout')), limite))
                             ]);
                             estadoBot.comandos++;
-                            db.subirEnSegundoPlano();
                         } catch (error) {
                             estadoBot.errores++;
                             console.error(`❌ ${cmdName}:`, error.message);
@@ -914,5 +922,5 @@ async function startBot() {
 setInterval(async () => {
     try { if (db) await db.subirDatos(); } catch (e) {}
     try { if (authPersist) await authPersist.subirAuth(); } catch (e) {}
-}, 10 * 60 * 1000);
+}, 60 * 60 * 1000);
 // ==========================================

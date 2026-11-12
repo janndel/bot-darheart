@@ -173,8 +173,8 @@ async function descargarVideoArchivo(entrada, timeoutMs = 240000, opts = {}) {
         const objetivo = esUrlYouTube(entrada) ? entrada : `ytsearch1:${entrada}`;
         const salida = await ejecutarDescarga([
             '--merge-output-format', 'mp4',
-            '-f', 'bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/bestvideo[height<=720]+bestaudio/best[ext=mp4]/best',
-            '--max-filesize', `${maxMB}M`,
+            '-f', 'bestvideo[height<=480][ext=mp4]+bestaudio[ext=m4a]/bestvideo[height<=480]+bestaudio/best[ext=mp4]/best',
+            '--max-filesize', '15M',
             '--no-simulate',
             '--print', 'after_move:%(title)s',
             '-o', path.join(dir, 'video.%(ext)s'),

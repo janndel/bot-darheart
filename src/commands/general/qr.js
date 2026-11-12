@@ -26,7 +26,7 @@ module.exports = {
             console.error('Error qr:', error.message);
             // Fallback: guardar imagen y enviarla
             try {
-                const res = await axios.get(url, { responseType: 'arraybuffer' });
+                const res = await axios.get(url, { responseType: 'arraybuffer', maxContentLength: 15 * 1024 * 1024 });
                 const buffer = Buffer.from(res.data);
                 await sock.sendMessage(chatId, {
                     image: buffer,

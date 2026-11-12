@@ -9,7 +9,7 @@ const { verificarEspacio } = require('./storage');
 
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36';
 const TIKWM_API = 'https://www.tikwm.com/api/';
-const MAX_WHATSAPP_BYTES = 64 * 1024 * 1024;
+const MAX_WHATSAPP_BYTES = 15 * 1024 * 1024;
 const MAX_SLIDES = 20;
 
 function ejecutar(cmd, args, timeoutMs = 600000, job = null) {
@@ -98,8 +98,8 @@ async function descargarUrl(url, destino, timeoutMs = 600000, job = null) {
         responseType: 'stream',
         timeout: timeoutMs,
         signal: job?.abortController?.signal,
-        maxContentLength: 1024 * 1024 * 1024,
-        maxBodyLength: 1024 * 1024 * 1024,
+        maxContentLength: 15 * 1024 * 1024,
+        maxBodyLength: 15 * 1024 * 1024,
         headers: {
             'User-Agent': UA,
             'Referer': 'https://www.tiktok.com/'
@@ -134,7 +134,7 @@ async function descargarConYtDlp(url, dir, job = null) {
             '--retries', '3',
             '--no-check-certificates',
             '--cookies', cookie,
-            '-f', 'best[ext=mp4]/best',
+            '-f', 'best[height<=480][ext=mp4]/best[height<=480]/best[ext=mp4]',
             '-o', destino,
             url
         ];

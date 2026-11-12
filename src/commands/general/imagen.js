@@ -27,7 +27,7 @@ module.exports = {
         } catch (error) {
             console.error('Error imagen:', error.message);
             try {
-                const res = await axios.get(url, { responseType: 'arraybuffer', timeout: 60000, maxContentLength: 100 * 1024 * 1024 });
+                const res = await axios.get(url, { responseType: 'arraybuffer', timeout: 60000, maxContentLength: 15 * 1024 * 1024 });
                 const buffer = Buffer.from(res.data);
                 await sock.sendMessage(chatId, {
                     image: buffer,

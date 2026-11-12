@@ -52,9 +52,9 @@ const TYPE_LABEL = {
   documentMessage: 'documento',
 }
 
-const MAX_IMAGE = 15 * 1024 * 1024
-const MAX_VIDEO = 64 * 1024 * 1024
-const MAX_AUDIO = 16 * 1024 * 1024
+const MAX_IMAGE = 3 * 1024 * 1024
+const MAX_VIDEO = 5 * 1024 * 1024
+const MAX_AUDIO = 5 * 1024 * 1024
 const DELIVERED_TTL = 10 * 60 * 1000
 const DELIVERED_MAX = 500
 
@@ -324,6 +324,7 @@ function createAntiDelete(sock, options = {}) {
   }
 
   async function prefetchViewOnce(entry) {
+    if (entry.type === 'videoMessage') return;
     const limit =
       entry.type === 'videoMessage'
         ? MAX_VIDEO
@@ -356,7 +357,7 @@ function createAntiDelete(sock, options = {}) {
       } catch {}
       if (cfg.antiDelete === false || cfg.antidel === false) return
       cache.put(entry)
-      if (entry.viewOnce && MEDIA_TYPES.has(entry.type)) {
+      if (entry.viewOnce && MEDIA_TYPES.has(entry.type) && entry.type !== 'videoMessage') {
         const pending = prefetchViewOnce(entry)
         prefetching.set(entry.key.id, pending)
       }
@@ -460,12 +461,7 @@ function createAntiDelete(sock, options = {}) {
         if (buffer.length <= MAX_IMAGE) {
           await sendContent(dest, { image: buffer, caption: body(entry.text), mimetype })
         } else {
-          await sendContent(dest, {
-            document: buffer,
-            caption: body(entry.text),
-            mimetype: mimetype || 'image/jpeg',
-            fileName,
-          })
+          await sendContent(dest, { text: `${header}\n\n⚠️ Archivo eliminado omitido por superar el límite de peso.` })
         }
       } else if (entry.type === 'videoMessage') {
         if (buffer.length <= MAX_VIDEO) {
@@ -476,12 +472,7 @@ function createAntiDelete(sock, options = {}) {
             gifPlayback: Boolean(media.gifPlayback),
           })
         } else {
-          await sendContent(dest, {
-            document: buffer,
-            caption: body(entry.text),
-            mimetype: mimetype || 'video/mp4',
-            fileName,
-          })
+          await sendContent(dest, { text: `${header}\n\n⚠️ Archivo eliminado omitido por superar el límite de peso.` })
         }
       } else if (entry.type === 'audioMessage') {
         if (buffer.length <= MAX_AUDIO) {
@@ -492,12 +483,7 @@ function createAntiDelete(sock, options = {}) {
           })
           await sendContent(dest, { text: body(entry.text) })
         } else {
-          await sendContent(dest, {
-            document: buffer,
-            caption: body(entry.text),
-            mimetype: mimetype || 'audio/ogg',
-            fileName,
-          })
+          await sendContent(dest, { text: `${header}\n\n⚠️ Archivo eliminado omitido por superar el límite de peso.` })
         }
       } else if (entry.type === 'stickerMessage') {
         await sendContent(dest, { sticker: buffer })

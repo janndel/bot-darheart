@@ -38,7 +38,7 @@ module.exports = {
             const { ruta, size, titulo } = data;
             const caption = `✅ *${titulo}*\n📹 ${formatearBytes(size)}\n\n_DARHEART Bot_`;
 
-            if (size <= 64 * 1024 * 1024) {
+            if (size <= 15 * 1024 * 1024) {
                 try {
                     const buffer = fs.readFileSync(ruta);
                     await sock.sendMessage(chatId, {
